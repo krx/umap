@@ -2,13 +2,13 @@
 #
 # Contains class definitions to implement a USB Audio device.
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBCSInterface import *
-from USBEndpoint import *
-from USBCSEndpoint import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBCSInterface import *
+from ..USBEndpoint import *
+from ..USBCSEndpoint import *
 
 
 class USBAudioClass(USBClass):
@@ -86,7 +86,7 @@ class USBAudioInterface(USBInterface):
         self.maxusb_app = maxusb_app
         self.int_num = int_num
 
-        descriptors = { 
+        descriptors = {
                 USB.desc_type_hid    : self.hid_descriptor,
                 USB.desc_type_report : self.report_descriptor
         }
@@ -142,7 +142,7 @@ class USBAudioInterface(USBInterface):
             0x02,           # INPUT_TERMINAL
             bTerminalID,    # bTerminalID
             wTerminalType,  # wTerminalType
-            bAssocTerminal, # bAssocTerminal    
+            bAssocTerminal, # bAssocTerminal
             bNrChannel,     # bNrChannel
             wChannelConfig, # wChannelConfig
             0,          # iChannelNames
@@ -371,7 +371,7 @@ class USBAudioInterface(USBInterface):
     def handle_data_available(self, data):
         if self.verbose > 0:
             print(self.name, "handling", len(data), "bytes of audio data")
-    
+
 
 
 

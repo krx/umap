@@ -2,11 +2,11 @@
 #
 # Contains class definitions to implement a USB keyboard.
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
 
 class USBKeyboardClass(USBClass):
     name = "USB Keyboard class"
@@ -198,7 +198,7 @@ class USBKeyboardInterface(USBInterface):
         self.hid_descriptor = bLength + self.hid_descriptor
 
 
-        descriptors = { 
+        descriptors = {
                 USB.desc_type_hid    : self.hid_descriptor,
                 USB.desc_type_report : self.report_descriptor
         }

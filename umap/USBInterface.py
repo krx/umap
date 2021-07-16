@@ -2,7 +2,7 @@
 #
 # Contains class definition for USBInterface.
 
-from USB import *
+from .USB import *
 
 class USBInterface:
     name = "generic USB interface"
@@ -77,7 +77,7 @@ class USBInterface:
 
     def handle_set_interface_request(self, req):
 
-        trace = "Int:SetInt" 
+        trace = "Int:SetInt"
         self.maxusb_app.fingerprint.append(trace)
 
 
@@ -121,7 +121,7 @@ class USBInterface:
             iclass_desc_num = USB.interface_class_to_descriptor_type(self.iclass)
             if iclass_desc_num:
                 d += self.descriptors[iclass_desc_num]
-    
+
         for e in self.cs_interfaces:
             d += e.get_descriptor()
 

@@ -1,4 +1,4 @@
-# USBPrinter.py 
+# USBPrinter.py
 #
 # Contains class definitions to implement a USB printer device.
 
@@ -6,20 +6,20 @@ from mmap import mmap
 import os
 import time
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
-from USBClass import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
+from ..USBClass import *
 
-from util import *
+from ..util import *
 
 class USBPrinterClass(USBClass):
     name = "USB printer class"
 
     def __init__(self, maxusb_app):
-     
+
         self.maxusb_app = maxusb_app
         self.setup_request_handlers()
 
@@ -229,7 +229,7 @@ class USBPrinterInterface(USBInterface):
         if 'EOJ\n' in text_buffer:
             print ("File write complete")
             out_file.close()
-            self.maxusb_app.stop = True    
+            self.maxusb_app.stop = True
 
 class USBPrinterDevice(USBDevice):
     name = "USB printer device"

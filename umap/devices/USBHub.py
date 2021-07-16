@@ -2,11 +2,11 @@
 #
 # Contains class definitions to implement a USB hub.
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
 
 class USBHubClass(USBClass):
     name = "USB hub class"
@@ -35,7 +35,7 @@ class USBHubClass(USBClass):
             self.maxusb_app.send_on_endpoint(0, response)
             self.maxusb_app.stop = True
 
-        
+
     def handle_set_port_feature_request(self, req):
 #        print ("DEBUG: Set port feature request")
         response = b''
@@ -97,7 +97,7 @@ class USBHubInterface(USBInterface):
 
 
 
-        descriptors = { 
+        descriptors = {
                 USB.desc_type_hub    : hub_descriptor
         }
 

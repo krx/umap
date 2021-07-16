@@ -2,13 +2,13 @@
 #
 # Contains class definitions to implement a USB CDC device.
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBCSInterface import *
-from USBEndpoint import *
-from USBCSEndpoint import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBCSInterface import *
+from ..USBEndpoint import *
+from ..USBCSEndpoint import *
 
 
 class USBCDCClass(USBClass):
@@ -189,7 +189,7 @@ class USBCDCInterface(USBInterface):
     def handle_data_available(self, data):
         if self.verbose > 0:
             print(self.name, "handling", len(data), "bytes of audio data")
-    
+
 
 
 

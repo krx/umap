@@ -3,7 +3,7 @@
 # Contains class definitions for Facedancer, FacedancerCommand, FacedancerApp,
 # and GoodFETMonitorApp.
 
-from util import *
+from .util import *
 
 class Facedancer:
     def __init__(self, serialport, verbose=0):

@@ -2,10 +2,10 @@
 #
 # Contains class definition for MAXUSBApp.
 
-from util import *
-from Facedancer import *
-from USB import *
-from USBDevice import USBDeviceRequest
+from .util import *
+from .Facedancer import *
+from .USB import *
+from .USBDevice import USBDeviceRequest
 import sys
 
 class MAXUSBApp(FacedancerApp):
@@ -70,7 +70,7 @@ class MAXUSBApp(FacedancerApp):
         self.fingerprint = []
 
         self.stop = False
-        self.retries = False 
+        self.retries = False
         self.enable()
 
         if verbose > 0:
@@ -96,7 +96,7 @@ class MAXUSBApp(FacedancerApp):
             self.write_register_cmd.data[0] |= 1
 
         self.device.writecmd(self.read_register_cmd)
-    
+
         resp = self.device.readcmd()
 
         if self.verbose > 2:

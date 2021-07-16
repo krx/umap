@@ -2,13 +2,13 @@
 #
 # Contains class definitions to implement a USB CDC device.
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBCSInterface import *
-from USBEndpoint import *
-from USBCSEndpoint import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBCSInterface import *
+from ..USBEndpoint import *
+from ..USBCSEndpoint import *
 
 
 class USBCDCClass(USBClass):
@@ -159,7 +159,7 @@ class USBCDCInterface(USBInterface):
             bmEthernetStatistics,
             wMaxSegmentSize,
             wNumberMCFilters,
-            bNumberPowerFilters            
+            bNumberPowerFilters
         ]
 
         cs_interfaces2 = [

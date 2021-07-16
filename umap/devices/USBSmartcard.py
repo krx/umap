@@ -4,11 +4,11 @@
 
 # This devbice doesn't work properly yet!!!!!
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
 
 class USBSmartcardClass(USBClass):
     name = "USB Smartcard class"
@@ -149,7 +149,7 @@ class USBSmartcardInterface(USBInterface):
                             bPinSupport + \
                             bMaxCCIDBusySlots
 
-        descriptors = { 
+        descriptors = {
                 USB.desc_type_hid    : self.icc_descriptor  # 33 is the same descriptor type code as HID
         }
 
@@ -227,7 +227,7 @@ class USBSmartcardInterface(USBInterface):
         bSeq = data[6:7]
 #        print ("seq=",ord(bSeq))
         bReserved = ord(data[7:8])
-#        print ("bReserved=",bReserved) 
+#        print ("bReserved=",bReserved)
 
         if self.maxusb_app.server_running == True:
             try:
@@ -270,7 +270,7 @@ class USBSmartcardInterface(USBInterface):
                 bProtocolNum = b'\x00'
 
             abProtocolDataStructure = b'\x11\x00\x00\x0a\x00'
-            
+
             response =  bMessageType + \
                         dwLength + \
                         bSlot + \
@@ -278,9 +278,9 @@ class USBSmartcardInterface(USBInterface):
                         bStatus + \
                         bError + \
                         bProtocolNum + \
-                        abProtocolDataStructure      
+                        abProtocolDataStructure
 
- 
+
         elif command == 0x62: # PC_to_RDR_IccPowerOn
 
             if bReserved == 2:
@@ -370,7 +370,7 @@ class USBSmartcardInterface(USBInterface):
             else:
                 bSlot = b'\x00' # fixed for legacy reasons
             if self.maxusb_app.testcase[1] == "IccPowerOff_abRFU":
-                abRFU = self.maxusb_app.testcase[2]            
+                abRFU = self.maxusb_app.testcase[2]
             else:
                 abRFU = b'\x01' # reserved
 
@@ -402,11 +402,11 @@ class USBSmartcardInterface(USBInterface):
 
 
 
-                    
+
 
         elif command == 0x6b: # PC_to_RDR_Escape
 
-           
+
             bMessageType = b'\x83'  # RDR_to_PC_Escape
             dwLength = b'\x00\x00\x00\x00' # Message-specific data length
             bSlot = b'\x00'
@@ -449,7 +449,7 @@ class USBSmartcardInterface(USBInterface):
                 bChainParameter = self.maxusb_app.testcase[2]
             else:
                 bChainParameter = b'\x00'
-            abData = b'\x6a\x82' 
+            abData = b'\x6a\x82'
 
             response =  bMessageType + \
                         dwLength + \
@@ -494,7 +494,7 @@ class USBSmartcardInterface(USBInterface):
             if self.maxusb_app.testcase[1] == "SetDataRateAndClockFrequency_dwDataRate":
                 dwDataRate = self.maxusb_app.testcase[2]
             else:
-                dwDataRate = b'\x60\x27\x00\x00' 
+                dwDataRate = b'\x60\x27\x00\x00'
 
             response =  bMessageType + \
                         dwLength + \
@@ -507,7 +507,7 @@ class USBSmartcardInterface(USBInterface):
                         dwDataRate
 
         else:
-            print ("Received Smartcard command not understood") 
+            print ("Received Smartcard command not understood")
             response = b''
 
         if self.maxusb_app.server_running == False:

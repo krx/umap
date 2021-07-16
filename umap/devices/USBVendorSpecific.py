@@ -1,12 +1,12 @@
 # USBVendorSpecific.py
 #
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
-from USBVendor import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
+from ..USBVendor import *
 
 
 class USBVendorVendor(USBVendor):
@@ -112,7 +112,7 @@ class USBVendorInterface(USBInterface):
 
 
     def handle_data_available(self,data):
-        return        
+        return
 
 
     def handle_buffer_available(self):

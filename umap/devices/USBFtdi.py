@@ -2,14 +2,14 @@
 #
 # Contains class definitions to implement a USB FTDI chip.
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
-from USBVendor import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
+from ..USBVendor import *
 
-from util import *
+from ..util import *
 
 class USBFtdiVendor(USBVendor):
     name = "USB FTDI vendor"

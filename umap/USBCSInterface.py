@@ -2,7 +2,7 @@
 #
 # Contains class definition for USBCSInterface.
 
-from USB import *
+from .USB import *
 
 class USBCSInterface:
     name = "USB class-specific interface"
@@ -68,7 +68,7 @@ class USBCSInterface:
 
         ######################### CDC class ####################################################################
 
-        if  self.cs_config[0] == 0x00 and self.usbclass == 2:   
+        if  self.cs_config[0] == 0x00 and self.usbclass == 2:
             bDescriptorType = 36 # CS_INTERFACE
             bDescriptorSubtype = 0x00 # Header Functional Descriptor
             bcdCDC = self.cs_config[1]
@@ -99,7 +99,7 @@ class USBCSInterface:
             d = config_length + d
 
 
-        if  self.cs_config[0] == 0x02 and self.usbclass == 2:  
+        if  self.cs_config[0] == 0x02 and self.usbclass == 2:
             bDescriptorType = 36 # CS_INTERFACE
             bDescriptorSubtype = 0x02 # Abstract Control Management Functional Descriptor
             bmCapabilities = self.cs_config[1]
@@ -160,7 +160,7 @@ class USBCSInterface:
 
         if  self.cs_config[0] == 0x01 and self.usbclass == 1 and self.sub == 1 and self.proto == 0:   # HEADER
             bDescriptorType = 36 # CS_INTERFACE
-            bDescriptorSubtype = 0x01 #HEADER 
+            bDescriptorSubtype = 0x01 #HEADER
             bcdADC = self.cs_config[1]
             wTotalLength = self.cs_config[2]
             bInCollection = self.cs_config[3]
@@ -185,13 +185,13 @@ class USBCSInterface:
         elif  self.cs_config[0] == 0x02 and self.usbclass == 1 and self.sub == 1 and self.proto == 0:   # INPUT_TERMINAL
             bDescriptorType = 36 # CS_INTERFACE
             bDescriptorSubtype = 0x02 # INPUT_TERMINAL
-            bTerminalID = self.cs_config[1] 
+            bTerminalID = self.cs_config[1]
             wTerminalType = self.cs_config[2]
             bAssocTerminal = self.cs_config[3] # ID of associated output terminal
             bNrChannels = self.cs_config[4] # number of logical output channels
             wChannelConfig = self.cs_config[5] # spatial location of logical channels: Left front/Right front
             iChannelNames = self.cs_config[6] # Index of String descriptor describing name of logical channel
-            iTerminal = self.cs_config[7] # Index of String descriptor describing input terminal 
+            iTerminal = self.cs_config[7] # Index of String descriptor describing input terminal
 
             d = bytearray([
                     bDescriptorType,

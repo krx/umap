@@ -1,18 +1,18 @@
-# USBImage.py 
+# USBImage.py
 #
 # Contains class definitions to implement a USB image device.
 
 from mmap import mmap
 import os
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
-from USBClass import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
+from ..USBClass import *
 
-from util import *
+from ..util import *
 
 class USBImageClass(USBClass):
     name = "USB image class"
@@ -126,11 +126,11 @@ class USBImageInterface(USBInterface):
             self.maxusb_app.stop = True
 
         container = ContainerRequestWrapper(data)
-        opcode = container.operation_code[1] << 8 | container.operation_code[0] 
+        opcode = container.operation_code[1] << 8 | container.operation_code[0]
         container_type = container.container_type[1] << 8 | \
-                        container.container_type[0] 
-        
-        #print ("DEBUG: container type:", container_type) 
+                        container.container_type[0]
+
+        #print ("DEBUG: container type:", container_type)
 
 
         if self.maxusb_app.testcase[1] == "DeviceInfo_TransactionID":
@@ -151,7 +151,7 @@ class USBImageInterface(USBInterface):
             transaction_id = bytes ([container.transaction_id[3], \
                                      container.transaction_id[2], \
                                      container.transaction_id[1], \
-                                     container.transaction_id[0]]) 
+                                     container.transaction_id[0]])
 
         status = 0              # default to success
         response = None         # with no response data
@@ -205,7 +205,7 @@ class USBImageInterface(USBInterface):
 
             response = change_byte_order(container_type) + \
                        change_byte_order(operation_code) + \
-                       change_byte_order(transaction_id) 
+                       change_byte_order(transaction_id)
 
             x = 0
             while x < len(thumbnail_data_object):
@@ -284,7 +284,7 @@ class USBImageInterface(USBInterface):
                 container_type = change_byte_order(self.maxusb_app.testcase[2])
             else:
                 container_type = b'\x00\x02' # Data block
-            
+
             if self.maxusb_app.testcase[1] == "DeviceInfo_OperationCode":
                 operation_code = change_byte_order(self.maxusb_app.testcase[2])
             else:
@@ -310,12 +310,12 @@ class USBImageInterface(USBInterface):
                 functional_mode = change_byte_order(self.maxusb_app.testcase[2])
             else:
                 functional_mode = b'\x00\x00' # standard mode
-           
+
             if self.maxusb_app.testcase[1] == "DeviceInfo_OperationsSupportedArraySize":
                 operations_supported_array_size = change_byte_order(self.maxusb_app.testcase[2])
             else:
                 operations_supported_array_size = b'\x00\x00\x00\x10' # 16 operations supported
-       
+
             if self.maxusb_app.testcase[1] == "DeviceInfo_OperationSupported":
                 op1_supported = change_byte_order(self.maxusb_app.testcase[2])
             else:
@@ -335,7 +335,7 @@ class USBImageInterface(USBInterface):
             op14_supported = b'\x10\x15' # GetDevicePropValue
             op15_supported = b'\x10\x16' # SetDevicePropValue
             op16_supported = b'\x10\x1b' # GetPartialObject
- 
+
             if self.maxusb_app.testcase[1] == "DeviceInfo_EventsSupportedArraySize":
                 events_supported_array_size = change_byte_order(self.maxusb_app.testcase[2])
             else:
@@ -357,7 +357,7 @@ class USBImageInterface(USBInterface):
             if self.maxusb_app.testcase[1] == "DeviceInfo_DevicePropertySupported":
                 dp1_supported = change_byte_order(self.maxusb_app.testcase[2])
             else:
-                dp1_supported = b'\xd4\x06' # Unknown property 
+                dp1_supported = b'\xd4\x06' # Unknown property
             dp2_supported = b'\xd4\x07' # Unknown property
 
             if self.maxusb_app.testcase[1] == "DeviceInfo_CaptureFormatsSupportedArraySize":
@@ -466,7 +466,7 @@ class USBImageInterface(USBInterface):
                        serial_number_length_bytes + \
                        serial_number
 
-            
+
 
             if self.maxusb_app.testcase[1] == "DeviceInfo_ContainerLength":
                 container_length_bytes = change_byte_order(self.maxusb_app.testcase[2])
@@ -567,7 +567,7 @@ class USBImageInterface(USBInterface):
                        change_byte_order(operation_code) + \
                        change_byte_order(transaction_id) + \
                        change_byte_order(object_handle_array_size) + \
-                       change_byte_order(object_handle) 
+                       change_byte_order(object_handle)
 
             container_length = len(response) + 4
 
@@ -696,7 +696,7 @@ class USBImageInterface(USBInterface):
                        filename + \
                        capture_date + \
                        modification_date + \
-                       keywords 
+                       keywords
 
             container_length = len(response) + 4
 
@@ -766,7 +766,7 @@ class USBImageInterface(USBInterface):
             if self.maxusb_app.testcase[1] == "StorageInfo_VolumeLabel":
                 volume_label = change_byte_order(self.maxusb_app.testcase[2])
             else:
-                volume_label = b'\x00' 
+                volume_label = b'\x00'
 
             response = change_byte_order(container_type) + \
                        change_byte_order(operation_code) + \

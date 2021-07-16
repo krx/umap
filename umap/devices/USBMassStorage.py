@@ -1,18 +1,18 @@
-# USBMassStorage.py 
+# USBMassStorage.py
 #
 # Contains class definitions to implement a USB mass storage device.
 
 from mmap import mmap
 import os
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBEndpoint import *
-from USBClass import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBEndpoint import *
+from ..USBClass import *
 
-from util import *
+from ..util import *
 
 class USBMassStorageClass(USBClass):
     name = "USB mass storage class"
@@ -21,7 +21,7 @@ class USBMassStorageClass(USBClass):
         self.request_handlers = {
             0xFF : self.handle_bulk_only_mass_storage_reset_request,
             0xFE : self.handle_get_max_lun_request
-         
+
         }
 
     def handle_bulk_only_mass_storage_reset_request(self, req):
@@ -249,16 +249,16 @@ class USBMassStorageInterface(USBInterface):
                 else:
                     block_descriptor_len = b'\x00'
                 mode_page_1c = b'\x1c\x06\x00\x05\x00\x00\x00\x00'
-            
+
                 body =  medium_type + \
                         device_specific_param + \
                         block_descriptor_len + \
-                        mode_page_1c 
+                        mode_page_1c
 
                 if self.maxusb_app.testcase[1] == "mode_sense_length":
                     length = self.maxusb_app.testcase[2]
                 else:
-                    length = bytes([len(body)]) 
+                    length = bytes([len(body)])
                 response = length + body
 
             if page == 0x3f:
@@ -388,7 +388,7 @@ class USBMassStorageInterface(USBInterface):
             if self.verbose > 0:
                 print(self.name, "got SCSI Read (10), lba", base_lba, "+",
                         num_blocks, "block(s)")
-                        
+
 
             # Note that here we send the data directly rather than putting
             # something in 'response' and letting the end of the switch send

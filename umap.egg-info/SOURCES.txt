@@ -1,0 +1,11 @@
+CHANGELOG.txt
+INSTALL.txt
+LICENSE.txt
+README.md
+setup.py
+umap.egg-info/PKG-INFO
+umap.egg-info/SOURCES.txt
+umap.egg-info/dependency_links.txt
+umap.egg-info/entry_points.txt
+umap.egg-info/requires.txt
+umap.egg-info/top_level.txt

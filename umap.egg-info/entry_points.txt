@@ -1,0 +1,3 @@
+[console_scripts]
+umap = umap.umap:main
+

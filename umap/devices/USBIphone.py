@@ -2,14 +2,14 @@
 #
 # Contains class definitions to implement a USB iPhone device.
 
-from USB import *
-from USBDevice import *
-from USBConfiguration import *
-from USBInterface import *
-from USBCSInterface import *
-from USBEndpoint import *
-from USBCSEndpoint import *
-from USBVendor import *
+from ..USB import *
+from ..USBDevice import *
+from ..USBConfiguration import *
+from ..USBInterface import *
+from ..USBCSInterface import *
+from ..USBEndpoint import *
+from ..USBCSEndpoint import *
+from ..USBVendor import *
 
 class USBIphoneVendor(USBVendor):
     name = "USB iPhone vendor"
@@ -174,7 +174,7 @@ class USBIphoneInterface(USBInterface):
     def handle_data_available(self, data):
         if self.verbose > 0:
             print(self.name, "handling", len(data), "bytes of audio data")
-    
+
 
 
 
@@ -192,7 +192,7 @@ class USBIphoneDevice(USBDevice):
 
 
         config = [
-            USBConfiguration(                
+            USBConfiguration(
                 maxusb_app,
                 1,                          # index
                 "iPhone",             # string desc
