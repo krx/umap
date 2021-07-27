@@ -4,6 +4,7 @@
 #
 from serial import Serial, PARITY_NONE
 import time
+from . import current_version, current_platform
 from .Facedancer import *
 from .MAXUSBApp import *
 from .devices.networking import *
@@ -27,10 +28,6 @@ from .device_class_data import *
 import sys
 import platform
 import json
-
-
-current_version = "1.03"
-current_platform = platform.system()
 
 def main():
     print ("\n---------------------------------------")

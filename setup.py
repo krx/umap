@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from setuptools import setup, find_packages
 
-from umap.umap import current_version
+from umap import current_version
 
 setup(
     name='umap',
